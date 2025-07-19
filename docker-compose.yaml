@@ -46,12 +46,28 @@ services:
       KC_DB_PASSWORD: "password"
       KC_BOOTSTRAP_ADMIN_USERNAME: "admin"
       KC_BOOTSTRAP_ADMIN_PASSWORD: "change_me"
-        #winfor-api:
-        #winfor-web:
     ports:
       - 8090:8080
     depends_on:
       - postgres-keycloak
+  winfor-api:
+    image: maven:3.9-eclipse-temurin-21
+    command: mvn quarkus:dev -DdebugHost=0.0.0.0 # -Dsuspend
+    container_name: winfor-api
+    ports:
+      - "8080:8080"
+      - "5005:5005"
+    volumes:
+      - ./winfor-api:/app
+      - ~/.m2:/root/.m2
+      # o mapeamento abaixo foi mantido supondo que, futuramente, testes de integração
+      # envolvendo containeres serão empregados:
+      - /var/run/docker.sock:/var/run/docker.sock
+    working_dir: /app
+    depends_on:
+      - keycloak
+        #winfor-web:
 volumes:
   postgres_app_data:
   postgres_keycloak_data:
+
