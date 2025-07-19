@@ -1,0 +1,57 @@
+services:
+  postgres-app:
+    build: ./postgres-app
+    container_name: winfor-postgres-app
+    environment:
+      POSTGRES_DB: "winfor"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_USER: "winfor"
+    ports:
+      - 5444:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - postgres_app_data:/var/postgresql/data
+      - /postgres-app/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - /postgres-app:/sql-src
+  postgres-keycloak:
+    build: ./postgres-keycloak
+    container_name: winfor-postgres-keycloak
+    environment:
+      POSTGRES_DB: "keycloak"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_USER: "keycloak"
+    ports:
+      - 5445:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - postgres_keycloak_data:/var/postgresql/data
+      - /postgres-keycloak/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - /postgres-keycloak:/sql-src
+  keycloak:
+    build: ./keycloak
+    container_name: winfor-keycloak
+    hostname: localhost
+    environment:
+      KC_DB: "postgres"
+      KC_DB_URL_HOST: "postgres-keycloak"
+      KC_DB_USERNAME: "keycloak"
+      KC_DB_PASSWORD: "password"
+      KC_BOOTSTRAP_ADMIN_USERNAME: "admin"
+      KC_BOOTSTRAP_ADMIN_PASSWORD: "change_me"
+        #winfor-api:
+        #winfor-web:
+    ports:
+      - 8090:8080
+    depends_on:
+      - postgres-keycloak
+volumes:
+  postgres_app_data:
+  postgres_keycloak_data:
