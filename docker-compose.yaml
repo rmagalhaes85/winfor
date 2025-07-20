@@ -8,11 +8,6 @@ services:
       POSTGRES_USER: "winfor"
     ports:
       - 5444:5432
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready"]
-      interval: 10s
-      timeout: 10s
-      retries: 5
     volumes:
       - postgres_app_data:/var/postgresql/data
       - /postgres-app/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
@@ -26,11 +21,6 @@ services:
       POSTGRES_USER: "keycloak"
     ports:
       - 5445:5432
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready"]
-      interval: 10s
-      timeout: 10s
-      retries: 5
     volumes:
       - postgres_keycloak_data:/var/postgresql/data
       - /postgres-keycloak/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
