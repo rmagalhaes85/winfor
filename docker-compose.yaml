@@ -44,6 +44,9 @@ services:
     image: maven:3.9-eclipse-temurin-21
     command: mvn quarkus:dev -DdebugHost=0.0.0.0 # -Dsuspend
     container_name: winfor-api
+    environment:
+      QUARKUS_OIDC_AUTH_SERVER_URL: "http://keycloak:8080/realms/winfor"
+      QUARKUS_OIDC_CREDENTIALS_SECRET: "GhnBwLbKKgTWoOO8HvPFmwLRdACBf15W"
     ports:
       - "8080:8080"
       - "5005:5005"
