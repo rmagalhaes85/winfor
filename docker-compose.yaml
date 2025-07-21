@@ -23,8 +23,8 @@ services:
       - 5445:5432
     volumes:
       - postgres_keycloak_data:/var/postgresql/data
-      - /postgres-keycloak/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
-      - /postgres-keycloak:/sql-src
+      - ./postgres-keycloak/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./postgres-keycloak:/sql-src
   keycloak:
     build: ./keycloak
     container_name: winfor-keycloak
