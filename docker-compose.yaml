@@ -65,7 +65,18 @@ services:
     depends_on:
       - keycloak
       - postgres-app
-        #winfor-web:
+  winfor-web:
+    build: ./winfor-web
+    container_name: winfor-web
+    command: "npm start"
+    ports:
+      - 4200:4200
+    volumes:
+      - ./winfor-web/public:/app/public
+      - ./winfor-web/src:/app/src
+    depends_on:
+      - keycloak
+      - winfor-api
 volumes:
   postgres_app_data:
   postgres_keycloak_data:
