@@ -1,6 +1,8 @@
 {
   "id" : "4adc8699-b1b2-4dc0-956b-e34a5c6e85cc",
   "realm" : "winfor",
+  "displayName" : "",
+  "displayNameHtml" : "",
   "notBefore" : 0,
   "defaultSignatureAlgorithm" : "RS256",
   "revokeRefreshToken" : false,
@@ -280,6 +282,7 @@
       } ],
       "security-admin-console" : [ ],
       "admin-cli" : [ ],
+      "winfor-app" : [ ],
       "account-console" : [ ],
       "broker" : [ {
         "id" : "59cb2fa4-45e1-4de3-a068-b9b28c7d88f7",
@@ -411,12 +414,21 @@
   "users" : [ {
     "id" : "c2282c5a-9728-4e14-9125-1f4b41b3abf2",
     "username" : "admin1",
+    "firstName" : "Admin",
+    "lastName" : "Da Silva",
     "email" : "admin1-winfor@example.com",
     "emailVerified" : true,
     "enabled" : true,
     "createdTimestamp" : 1752892009569,
     "totp" : false,
-    "credentials" : [ ],
+    "credentials" : [ {
+      "id" : "ee314271-ed85-499e-af96-5a24ecf8f7b3",
+      "type" : "password",
+      "userLabel" : "My password",
+      "createdDate" : 1753103124292,
+      "secretData" : "{\"value\":\"eShCEKzdQ3SUplBabOU3d6kU8fgNhmS4Yr5vra6iVDc=\",\"salt\":\"soaxZS+pcKtjH0GGzxqnsQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
     "realmRoles" : [ "default-roles-winfor", "admin_winfor" ],
@@ -476,67 +488,6 @@
     } ]
   },
   "clients" : [ {
-    "id": "762fb5d6-d314-47fc-b4a3-e1a9fbd2fdc1",
-    "clientId": "winfor-app",
-    "name": "WinFor App",
-    "description": "",
-    "rootUrl": "http://localhost:8080",
-    "adminUrl": "http://localhost:8080",
-    "baseUrl": "",
-    "surrogateAuthRequired": false,
-    "enabled": true,
-    "alwaysDisplayInConsole": true,
-    "clientAuthenticatorType": "client-secret",
-    "secret": "GhnBwLbKKgTWoOO8HvPFmwLRdACBf15W",
-    "redirectUris": [
-      "http://localhost:8080/*"
-    ],
-    "webOrigins": [
-      "*"
-    ],
-    "notBefore": 0,
-    "bearerOnly": false,
-    "consentRequired": false,
-    "standardFlowEnabled": true,
-    "implicitFlowEnabled": false,
-    "directAccessGrantsEnabled": true,
-    "serviceAccountsEnabled": false,
-    "publicClient": false,
-    "frontchannelLogout": true,
-    "protocol": "openid-connect",
-    "attributes": {
-      "realm_client": "false",
-      "oidc.ciba.grant.enabled": "false",
-      "client.secret.creation.time": "1752951281",
-      "backchannel.logout.session.required": "true",
-      "standard.token.exchange.enabled": "false",
-      "oauth2.device.authorization.grant.enabled": "false",
-      "backchannel.logout.revoke.offline.tokens": "false"
-    },
-    "authenticationFlowBindingOverrides": {},
-    "fullScopeAllowed": true,
-    "nodeReRegistrationTimeout": -1,
-    "defaultClientScopes": [
-      "web-origins",
-      "acr",
-      "roles",
-      "profile",
-      "basic",
-      "email"
-    ],
-    "optionalClientScopes": [
-      "address",
-      "phone",
-      "organization",
-      "offline_access",
-      "microprofile-jwt"
-    ],
-    "access": {
-      "view": true,
-      "configure": true,
-      "manage": true
-    }
-  }, {
     "id" : "967e1d62-d961-471c-a560-347ad6564f68",
     "clientId" : "account",
     "name" : "${client_account}",
@@ -742,6 +693,48 @@
         "jsonType.label" : "String"
       }
     } ],
+    "defaultClientScopes" : [ "web-origins", "acr", "roles", "profile", "basic", "email" ],
+    "optionalClientScopes" : [ "address", "phone", "organization", "offline_access", "microprofile-jwt" ]
+  }, {
+    "id" : "762fb5d6-d314-47fc-b4a3-e1a9fbd2fdc1",
+    "clientId" : "winfor-app",
+    "name" : "WinFor App",
+    "description" : "",
+    "rootUrl" : "http://localhost:8080",
+    "adminUrl" : "http://localhost:8080",
+    "baseUrl" : "",
+    "surrogateAuthRequired" : false,
+    "enabled" : true,
+    "alwaysDisplayInConsole" : true,
+    "clientAuthenticatorType" : "client-secret",
+    "redirectUris" : [ "http://localhost:8080/*", "http://localhost:4200/*" ],
+    "webOrigins" : [ "*" ],
+    "notBefore" : 0,
+    "bearerOnly" : false,
+    "consentRequired" : false,
+    "standardFlowEnabled" : true,
+    "implicitFlowEnabled" : false,
+    "directAccessGrantsEnabled" : true,
+    "serviceAccountsEnabled" : false,
+    "publicClient" : true,
+    "frontchannelLogout" : true,
+    "protocol" : "openid-connect",
+    "attributes" : {
+      "realm_client" : "false",
+      "oidc.ciba.grant.enabled" : "false",
+      "client.secret.creation.time" : "1752951281",
+      "backchannel.logout.session.required" : "true",
+      "standard.token.exchange.enabled" : "false",
+      "frontchannel.logout.session.required" : "true",
+      "post.logout.redirect.uris" : "+",
+      "display.on.consent.screen" : "false",
+      "oauth2.device.authorization.grant.enabled" : "false",
+      "use.jwks.url" : "false",
+      "backchannel.logout.revoke.offline.tokens" : "false"
+    },
+    "authenticationFlowBindingOverrides" : { },
+    "fullScopeAllowed" : true,
+    "nodeReRegistrationTimeout" : -1,
     "defaultClientScopes" : [ "web-origins", "acr", "roles", "profile", "basic", "email" ],
     "optionalClientScopes" : [ "address", "phone", "organization", "offline_access", "microprofile-jwt" ]
   } ],
@@ -1397,7 +1390,7 @@
       "subType" : "authenticated",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "oidc-sha256-pairwise-sub-mapper", "saml-user-attribute-mapper", "oidc-usermodel-property-mapper", "saml-role-list-mapper", "oidc-usermodel-attribute-mapper", "saml-user-property-mapper", "oidc-full-name-mapper", "oidc-address-mapper" ]
+        "allowed-protocol-mapper-types" : [ "oidc-usermodel-property-mapper", "oidc-sha256-pairwise-sub-mapper", "saml-role-list-mapper", "oidc-address-mapper", "oidc-usermodel-attribute-mapper", "oidc-full-name-mapper", "saml-user-property-mapper", "saml-user-attribute-mapper" ]
       }
     }, {
       "id" : "3f2e9216-2710-4eb5-8fb2-c2c2a7e3d91c",
@@ -1406,7 +1399,7 @@
       "subType" : "anonymous",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "oidc-address-mapper", "saml-role-list-mapper", "oidc-sha256-pairwise-sub-mapper", "saml-user-attribute-mapper", "oidc-usermodel-attribute-mapper", "oidc-full-name-mapper", "oidc-usermodel-property-mapper", "saml-user-property-mapper" ]
+        "allowed-protocol-mapper-types" : [ "oidc-sha256-pairwise-sub-mapper", "saml-user-property-mapper", "oidc-address-mapper", "oidc-full-name-mapper", "saml-user-attribute-mapper", "oidc-usermodel-attribute-mapper", "oidc-usermodel-property-mapper", "saml-role-list-mapper" ]
       }
     }, {
       "id" : "2297dd88-da07-42f9-a027-f376aa5d6085",
@@ -2174,17 +2167,20 @@
   "firstBrokerLoginFlow" : "first broker login",
   "attributes" : {
     "cibaBackchannelTokenDeliveryMode" : "poll",
-    "cibaExpiresIn" : "120",
     "cibaAuthRequestedUserHint" : "login_hint",
-    "oauth2DeviceCodeLifespan" : "600",
     "clientOfflineSessionMaxLifespan" : "0",
     "oauth2DevicePollingInterval" : "5",
     "clientSessionIdleTimeout" : "0",
-    "parRequestUriLifespan" : "60",
-    "clientSessionMaxLifespan" : "0",
     "clientOfflineSessionIdleTimeout" : "0",
     "cibaInterval" : "5",
-    "realmReusableOtpCode" : "false"
+    "realmReusableOtpCode" : "false",
+    "cibaExpiresIn" : "120",
+    "oauth2DeviceCodeLifespan" : "600",
+    "saml.signature.algorithm" : "",
+    "parRequestUriLifespan" : "60",
+    "clientSessionMaxLifespan" : "0",
+    "frontendUrl" : "",
+    "acr.loa.map" : "{}"
   },
   "keycloakVersion" : "26.3.1",
   "userManagedAccessAllowed" : false,
