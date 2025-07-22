@@ -15,7 +15,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
         clientId: 'winfor-app',
       },
       initOptions: {
-        onLoad: 'check-sso',
+        onLoad: 'login-required',
         silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html',
         pkceMethod: 'S256',
         flow: 'standard',
