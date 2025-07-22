@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-//import { AuthService } from './auth.service';
-import { KeycloakService } from 'keycloak-angular';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -13,13 +12,13 @@ import { KeycloakService } from 'keycloak-angular';
 export class App {
   protected readonly title = signal('winfor-web');
 
-  constructor(public keycloakService: KeycloakService) { }
+  constructor(public authenticationService: AuthenticationService) { }
 
   async login() {
-    await this.keycloakService.login();
+    await this.authenticationService.login();
   }
 
   async logout() {
-    await this.keycloakService.logout();
+    await this.authenticationService.logout();
   }
 }

@@ -119,9 +119,9 @@
       <h1>Hello, {{ title() }}</h1>
       <p>Congratulations! Your app is running. 🎉</p>
       <div>
-        <button *ngIf="!keycloakService.isLoggedIn()" (click)="login()">Login</button>
-        <button *ngIf="keycloakService.isLoggedIn()" (click)="logout()">Logout</button>
-        <div *ngIf="keycloakService.isLoggedIn()">
+        <button *ngIf="!authenticationService.isLoggedIn()" (click)="login()">Login</button>
+        <button *ngIf="authenticationService.isLoggedIn()" (click)="logout()">Logout</button>
+        <div *ngIf="authenticationService.isLoggedIn()">
           <h2>Bem-vindo!</h2>
         </div>
       </div>
