@@ -60,41 +60,29 @@
 
 <main class="main">
 
-  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-      <span class="fs-4">Sidebar</span>
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-sidebar-unifor" style="width: 280px;">
+    <a href="/" class="d-flex align-items-center justify-content-center text-white text-decoration-none">
+      <img src="/unifor-logo-horizontal-negative.svg" style="width: 120px; height: auto" alt="" />
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-          Home
+      <li class="nav-item" *ngIf="this.authenticationService.hasRole('admin_winfor')">
+        <a href="#" class="nav-link active">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+          Usuários
         </a>
       </li>
-      <li>
+      <li *ngIf="this.authenticationService.hasRole('admin_winfor') ||
+                 this.authenticationService.hasRole('coordenador_cursos')">
         <a href="#" class="nav-link text-white">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-          Dashboard
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-          Orders
+          Cursos
         </a>
       </li>
       <li>
         <a href="#" class="nav-link text-white">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-          Products
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-          Customers
+          Matriz Curricular
         </a>
       </li>
     </ul>
