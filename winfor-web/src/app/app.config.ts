@@ -20,7 +20,6 @@ function initializeKeycloak(keycloak: KeycloakService) {
         pkceMethod: 'S256',
         flow: 'standard',
       },
-      // For debugging during development, set to true to see Keycloak logs
       enableBearerInterceptor: true,
       bearerExcludedUrls: ['/public', '/assets'],
     });
