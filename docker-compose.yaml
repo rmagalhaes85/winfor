@@ -47,6 +47,7 @@ services:
     command: mvn quarkus:dev -DdebugHost=0.0.0.0 # -Dsuspend
     container_name: winfor-api
     environment:
+      QUARKUS_KEYCLOAK_SERVER_URL: "http://keycloak:8080/"
       QUARKUS_DATASOURCE_JDBC_URL: "jdbc:postgresql://postgres-app:5432/winfor"
       QUARKUS_DATASOURCE_USERNAME: "winfor"
       QUARKUS_DATASOURCE_PASSWORD: "password"
