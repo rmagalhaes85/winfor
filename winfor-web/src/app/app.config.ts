@@ -1,7 +1,8 @@
-//import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { APP_INITIALIZER, ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 //import { provideOAuthClient } from 'angular-oauth2-oidc';
+
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 
 import { routes } from './app.routes';
@@ -29,9 +30,8 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    //provideHttpClient(),
+    provideHttpClient(),
     provideRouter(routes),
-    //provideOAuthClient(),
     {
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,

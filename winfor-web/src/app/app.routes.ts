@@ -1,7 +1,17 @@
 //import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
+import { HomeComponent } from './home/home.component';
+import { ListaUsuariosComponent } from './usuario/lista-usuarios.component';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
+  { path: '', component: HomeComponent },
+  {
+    path: 'usuarios',
+    component: ListaUsuariosComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['admin_winfor'] }
+  },
 //  Exemplos:
 //  -------
 //  { path: '', component: HomeComponent }, // Public route

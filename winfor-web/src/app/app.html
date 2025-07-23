@@ -61,13 +61,13 @@
 <main class="main">
 
   <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-sidebar-unifor" style="width: 280px;">
-    <a href="/" class="d-flex align-items-center justify-content-center text-white text-decoration-none">
+    <a routerLink="/" class="d-flex align-items-center justify-content-center text-white text-decoration-none">
       <img src="/unifor-logo-horizontal-negative.svg" style="width: 120px; height: auto" alt="" />
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item" *ngIf="this.authenticationService.hasRole('admin_winfor')">
-        <a href="#" class="nav-link active">
+        <a routerLink="usuarios" class="nav-link active">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
           Usuários
         </a>

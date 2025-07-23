@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterLink, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
