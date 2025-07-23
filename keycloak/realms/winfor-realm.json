@@ -280,6 +280,7 @@
         "containerId" : "500b8b42-d065-4531-a647-0462dc7f6059",
         "attributes" : { }
       } ],
+      "winfor-app-admin" : [ ],
       "security-admin-console" : [ ],
       "admin-cli" : [ ],
       "winfor-app" : [ ],
@@ -437,12 +438,21 @@
   }, {
     "id" : "99e4a54e-2d1e-45a6-9e5a-a74db54b53a6",
     "username" : "aluno1",
+    "firstName" : "Aluno1",
+    "lastName" : "Cavalcante",
     "email" : "aluno1-winfor@example.com",
     "emailVerified" : true,
     "enabled" : true,
     "createdTimestamp" : 1752892061313,
     "totp" : false,
-    "credentials" : [ ],
+    "credentials" : [ {
+      "id" : "ae5bd90b-cdd1-41ad-be15-97c80941d470",
+      "type" : "password",
+      "userLabel" : "My password",
+      "createdDate" : 1753208089956,
+      "secretData" : "{\"value\":\"tYZK9iohQ6PqQGa6KC0ycr3SLjfBb0o31F13//olI4I=\",\"salt\":\"3SBkufL0R/QxsWV7GmJ+sQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
     "realmRoles" : [ "default-roles-winfor", "aluno" ],
@@ -451,12 +461,21 @@
   }, {
     "id" : "90d28077-5de8-4c0e-8df5-142dfccfeff6",
     "username" : "coordenador1",
+    "firstName" : "Coordenador 1",
+    "lastName" : "De Souza",
     "email" : "coordenador1-winfor@example.com",
     "emailVerified" : true,
     "enabled" : true,
     "createdTimestamp" : 1752892026336,
     "totp" : false,
-    "credentials" : [ ],
+    "credentials" : [ {
+      "id" : "01a000de-7c00-4dab-8dee-437f44972384",
+      "type" : "password",
+      "userLabel" : "My password",
+      "createdDate" : 1753208018341,
+      "secretData" : "{\"value\":\"1RSoRWHHTayg3dQswzXN42B95KLCT3+N4yaEHmRx+Js=\",\"salt\":\"E50051xsPHF51/5OxkDZpg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
     "realmRoles" : [ "default-roles-winfor", "coordenador_cursos" ],
@@ -474,6 +493,23 @@
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
     "realmRoles" : [ "default-roles-winfor", "professor" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "e081da38-2580-4edb-8679-3d90fd4f9cd9",
+    "username" : "service-account-winfor-app-admin",
+    "emailVerified" : false,
+    "enabled" : true,
+    "createdTimestamp" : 1753299982795,
+    "totp" : false,
+    "serviceAccountClientId" : "winfor-app-admin",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-winfor" ],
+    "clientRoles" : {
+      "realm-management" : [ "realm-admin", "view-users", "manage-users", "query-users" ]
+    },
     "notBefore" : 0,
     "groups" : [ ]
   } ],
@@ -736,6 +772,49 @@
     "fullScopeAllowed" : true,
     "nodeReRegistrationTimeout" : -1,
     "defaultClientScopes" : [ "web-origins", "acr", "roles", "profile", "basic", "email" ],
+    "optionalClientScopes" : [ "address", "phone", "organization", "offline_access", "microprofile-jwt" ]
+  }, {
+    "id" : "5883d8b6-ff3f-47fd-ae31-f05ec8b0d5dd",
+    "clientId" : "winfor-app-admin",
+    "name" : "WinFor App Admin",
+    "description" : "",
+    "rootUrl" : "http://localhost:8080",
+    "adminUrl" : "http://localhost:8080",
+    "baseUrl" : "",
+    "surrogateAuthRequired" : false,
+    "enabled" : true,
+    "alwaysDisplayInConsole" : true,
+    "clientAuthenticatorType" : "client-secret",
+    "secret" : "9WWNg0nySltdXgoeseySBfxijVmtUa7A",
+    "redirectUris" : [ "http://localhost:8080/*", "http://localhost:4200/*" ],
+    "webOrigins" : [ "*" ],
+    "notBefore" : 0,
+    "bearerOnly" : false,
+    "consentRequired" : false,
+    "standardFlowEnabled" : true,
+    "implicitFlowEnabled" : false,
+    "directAccessGrantsEnabled" : true,
+    "serviceAccountsEnabled" : true,
+    "publicClient" : false,
+    "frontchannelLogout" : true,
+    "protocol" : "openid-connect",
+    "attributes" : {
+      "realm_client" : "false",
+      "oidc.ciba.grant.enabled" : "false",
+      "client.secret.creation.time" : "1752951281",
+      "backchannel.logout.session.required" : "true",
+      "standard.token.exchange.enabled" : "false",
+      "frontchannel.logout.session.required" : "true",
+      "post.logout.redirect.uris" : "+",
+      "display.on.consent.screen" : "false",
+      "oauth2.device.authorization.grant.enabled" : "false",
+      "use.jwks.url" : "false",
+      "backchannel.logout.revoke.offline.tokens" : "false"
+    },
+    "authenticationFlowBindingOverrides" : { },
+    "fullScopeAllowed" : true,
+    "nodeReRegistrationTimeout" : -1,
+    "defaultClientScopes" : [ "web-origins", "service_account", "acr", "roles", "profile", "basic", "email" ],
     "optionalClientScopes" : [ "address", "phone", "organization", "offline_access", "microprofile-jwt" ]
   } ],
   "clientScopes" : [ {
@@ -1390,7 +1469,7 @@
       "subType" : "authenticated",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "oidc-usermodel-property-mapper", "oidc-sha256-pairwise-sub-mapper", "saml-role-list-mapper", "oidc-address-mapper", "oidc-usermodel-attribute-mapper", "oidc-full-name-mapper", "saml-user-property-mapper", "saml-user-attribute-mapper" ]
+        "allowed-protocol-mapper-types" : [ "oidc-usermodel-property-mapper", "oidc-sha256-pairwise-sub-mapper", "oidc-usermodel-attribute-mapper", "saml-role-list-mapper", "saml-user-attribute-mapper", "saml-user-property-mapper", "oidc-address-mapper", "oidc-full-name-mapper" ]
       }
     }, {
       "id" : "3f2e9216-2710-4eb5-8fb2-c2c2a7e3d91c",
@@ -1399,7 +1478,7 @@
       "subType" : "anonymous",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "oidc-sha256-pairwise-sub-mapper", "saml-user-property-mapper", "oidc-address-mapper", "oidc-full-name-mapper", "saml-user-attribute-mapper", "oidc-usermodel-attribute-mapper", "oidc-usermodel-property-mapper", "saml-role-list-mapper" ]
+        "allowed-protocol-mapper-types" : [ "saml-user-property-mapper", "oidc-address-mapper", "oidc-usermodel-attribute-mapper", "oidc-usermodel-property-mapper", "saml-role-list-mapper", "oidc-full-name-mapper", "saml-user-attribute-mapper", "oidc-sha256-pairwise-sub-mapper" ]
       }
     }, {
       "id" : "2297dd88-da07-42f9-a027-f376aa5d6085",
