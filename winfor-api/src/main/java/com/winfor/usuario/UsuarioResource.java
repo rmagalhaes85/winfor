@@ -44,7 +44,6 @@ public class UsuarioResource {
                     senha = ""; // senha deverá poder ser escrita, mas nunca lida
                 }})
                 .collect(Collectors.toList());
-        Usuario u = new Usuario();
         return usuarios.toArray(new Usuario[0]);
     }
 
