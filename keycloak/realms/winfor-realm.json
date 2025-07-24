@@ -484,6 +484,8 @@
   }, {
     "id" : "0e954f65-f9d6-4b50-abe8-d903f5b00644",
     "username" : "professor1",
+    "firstName" : "Professor",
+    "lastName" : "Meireles",
     "email" : "professor1-winfor@example.com",
     "emailVerified" : true,
     "enabled" : true,
