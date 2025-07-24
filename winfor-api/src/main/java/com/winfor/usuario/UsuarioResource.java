@@ -15,7 +15,7 @@ import jakarta.ws.rs.core.MediaType;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.representations.idm.UserRepresentation;
 
-@Path("/usuario")
+@Path("/api/usuario")
 public class UsuarioResource {
     @Inject
     SecurityIdentity securityIdentity;
