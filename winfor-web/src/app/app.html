@@ -66,14 +66,13 @@
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item" *ngIf="this.authenticationService.hasRole('admin_winfor')">
+      <li class="nav-item" *ngIf="hasRealmRole('admin_winfor')">
         <a routerLink="usuarios" class="nav-link active">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
           Usuários
         </a>
       </li>
-      <li *ngIf="this.authenticationService.hasRole('admin_winfor') ||
-                 this.authenticationService.hasRole('coordenador_cursos')">
+      <li *ngIf="hasRealmRole('admin_winfor') || hasRealmRole('coordenador_cursos')">
         <a href="#" class="nav-link text-white">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
           Cursos
@@ -104,15 +103,6 @@
 
 
   <div class="content">
-      <h1>Hello, {{ title() }}</h1>
-      <p>Congratulations! Your app is running. 🎉</p>
-      <div>
-        <button *ngIf="!authenticationService.isLoggedIn()" (click)="login()">Login</button>
-        <button *ngIf="authenticationService.isLoggedIn()" (click)="logout()">Logout</button>
-        <div *ngIf="authenticationService.isLoggedIn()">
-          <h2>Bem-vindo!</h2>
-        </div>
-      </div>
       <router-outlet />
   </div>
 </main>

@@ -1,5 +1,4 @@
-//import { AuthGuard } from './guards/auth.guard';
-import { AuthGuard } from './guards/auth.guard';
+import { canActivateAuthRole } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { ListaUsuariosComponent } from './usuario/lista-usuarios.component';
 import { Routes } from '@angular/router';
@@ -9,8 +8,8 @@ export const routes: Routes = [
   {
     path: 'usuarios',
     component: ListaUsuariosComponent,
-    canActivate: [AuthGuard],
-    data: { roles: ['admin_winfor'] }
+    canActivate: [canActivateAuthRole],
+    data: { role: 'admin_winfor' }
   },
 //  Exemplos:
 //  -------

@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, signal, effect, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
-import { AuthenticationService } from './services/authentication.service';
+import { typeEventArgs, ReadyArgs, KeycloakEventType, KEYCLOAK_EVENT_SIGNAL } from 'keycloak-angular';
+import Keycloak from 'keycloak-js';
 
 @Component({
   selector: 'app-root',
@@ -13,13 +14,30 @@ import { AuthenticationService } from './services/authentication.service';
 export class App {
   protected readonly title = signal('winfor-web');
 
-  constructor(public authenticationService: AuthenticationService) { }
+  authenticated = false;
+  keycloakStatus: string | undefined;
+  private readonly keycloak = inject(Keycloak);
+  private readonly keycloakSignal = inject(KEYCLOAK_EVENT_SIGNAL);
 
-  async login() {
-    await this.authenticationService.login();
+  constructor() {
+    effect(() => {
+      const keycloakEvent = this.keycloakSignal();
+      this.keycloakStatus = keycloakEvent.type;
+      if (keycloakEvent.type === KeycloakEventType.Ready) {
+        this.authenticated = typeEventArgs<ReadyArgs>(keycloakEvent.args);
+      }
+      if (keycloakEvent.type === KeycloakEventType.AuthLogout) {
+        this.authenticated = false;
+      }
+    });
   }
 
-  async logout() {
-    await this.authenticationService.logout();
+  logout() {
+    this.keycloak.logout();
   }
+
+  hasRealmRole(role: string) {
+    return this.keycloak.hasRealmRole(role);
+  }
+
 }
