@@ -27,7 +27,7 @@ public class UsuarioResource {
     @Path("/")
     @RolesAllowed("admin_winfor")
     @Produces(MediaType.APPLICATION_JSON)
-    public Usuario[] list() {
+    public Usuario[] listar() {
         List<Usuario> usuarios = keycloak
                 .realm("winfor")
                 .users()
