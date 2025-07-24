@@ -8,6 +8,7 @@ import io.quarkus.security.identity.SecurityIdentity;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
@@ -45,6 +46,16 @@ public class UsuarioResource {
                 }})
                 .collect(Collectors.toList());
         return usuarios.toArray(new Usuario[0]);
+    }
+
+    @POST
+    @Path("/criar")
+    @RolesAllowed("admin_winfor")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Usuario criar(String username) {
+      Usuario u = new Usuario();
+      u.username = username;
+      return u;
     }
 
     private String getFirstRoleName(UserRepresentation ur) {

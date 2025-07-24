@@ -1,6 +1,9 @@
 import { canActivateAuthRole } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
-import { ListaUsuariosComponent } from './usuario/lista-usuarios.component';
+import {
+  ListaUsuariosComponent,
+  CriarUsuarioComponent,
+} from './usuario';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -8,6 +11,12 @@ export const routes: Routes = [
   {
     path: 'usuarios',
     component: ListaUsuariosComponent,
+    canActivate: [canActivateAuthRole],
+    data: { role: 'admin_winfor' }
+  },
+  {
+    path: 'usuarios/criar',
+    component: CriarUsuarioComponent,
     canActivate: [canActivateAuthRole],
     data: { role: 'admin_winfor' }
   },

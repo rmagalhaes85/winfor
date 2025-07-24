@@ -1,1 +1,31 @@
-<p>criar-usuario works!</p>
+<h2>Criar Usuário</h2>
+<hr>
+<form [formGroup]="criarUsuarioForm" (submit)="onSubmit()">
+  <div class="col-md-6 mb-3">
+    <label for="username" class="form-label">Nome de Usuário:</label>
+    <input
+      id="username"
+      class="form-control"
+      type="text"
+      formControlName="username"
+      autocomplete="off"
+      autofocus
+      [class.is-invalid]="username?.touched && username?.invalid"
+    />
+    <div class="invalid-feedback" *ngIf="username?.touched && username?.invalid">
+      <div *ngIf="username?.errors?.['required']">
+        Campo de preenchimento obrigatório
+      </div>
+      <div *ngIf="username?.errors?.['minlength']">
+        Campo deve possuir, no mínimo, {{ username?.errors?.['minlength']?.requiredLength }}
+        caracteres
+      </div>
+      <div *ngIf="username?.errors?.['maxlength']">
+        Campo deve possuir, no máximo, {{ username?.errors?.['maxlength']?.requiredLength }}
+        caracteres
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Criar Usuário</button>
+</form>
+
