@@ -34,6 +34,7 @@ public class UsuarioResource {
                 .list()
                 .stream()
                 .map(uk -> new Usuario() {{
+                    username = uk.getUsername();
                     id = uk.getId();
                     nome = uk.getFirstName();
                     sobrenome = uk.getLastName();

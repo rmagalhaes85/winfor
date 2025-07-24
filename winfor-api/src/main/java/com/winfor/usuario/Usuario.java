@@ -2,6 +2,7 @@ package com.winfor.usuario;
 
 public class Usuario {
     public String id;
+    public String username;
     public String nome;
     public String sobrenome;
     public String email;
