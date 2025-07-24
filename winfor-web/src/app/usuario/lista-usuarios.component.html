@@ -1,1 +1,32 @@
-<p>lista-usuarios works!</p>
+<h2>Lista de Usuários</h2>
+<hr>
+<p>
+<button routerLink="/usuario/criar" class="btn btn-primary">
+  Adicionar Usuário
+</button>
+</p>
+<table class="table table-striped table-hover">
+  <thead class="table-primary">
+    <tr>
+      <th>Login</th>
+      <th>Nome</th>
+      <th>Sobrenome</th>
+      <th>Perfil</th>
+      <th>Comandos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let usuario of usuarios">
+      <td>{{ usuario.username }}</td>
+      <td>{{ usuario.nome }}</td>
+      <td>{{ usuario.sobrenome }}</td>
+      <td>{{ usuario.role }}</td>
+      <td>
+        <button routerLink="/usuario/editar/{{usuario.id}}"
+          class="btn btn-sm btn-secondary">Editar</button>
+        <button (click)="deleteUsuario(usuario.id)"
+          class="btn btn-sm btn-danger">Remover</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

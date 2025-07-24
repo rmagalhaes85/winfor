@@ -8,7 +8,7 @@ import { Usuario } from './usuario';
 })
 export class UsuarioService {
   // TODO tornar configurável
-  private apiUrl = 'http://localhost:8080/';
+  private apiUrl = 'http://localhost:8080/api/usuario/';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -24,7 +24,7 @@ export class UsuarioService {
     return this.httpClient.put<Usuario>(`${this.apiUrl}/${usuario.id}`, usuario);
   }
 
-  deleteUsuario(id: number): Observable<void> {
+  deleteUsuario(id: string): Observable<void> {
     return this.httpClient.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
