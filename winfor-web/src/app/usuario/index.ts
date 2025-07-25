@@ -1,3 +1,4 @@
+export * from './editar-usuario.component';
 export * from './lista-usuarios.component';
 export * from './criar-usuario.component';
 export * from './usuario.service';
