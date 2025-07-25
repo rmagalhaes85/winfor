@@ -22,7 +22,7 @@ import org.keycloak.admin.client.resource.RealmResource;
 import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.representations.idm.UserRepresentation;
 
-@Path("/api/usuario")
+@Path("/api/usuarios")
 public class UsuarioResource {
     @Inject
     SecurityIdentity securityIdentity;
