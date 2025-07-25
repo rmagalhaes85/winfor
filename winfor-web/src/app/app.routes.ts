@@ -1,6 +1,7 @@
 import { canActivateAuthRole } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
 import {
+  EditarUsuarioComponent,
   ListaUsuariosComponent,
   CriarUsuarioComponent,
 } from './usuario';
@@ -19,6 +20,12 @@ export const routes: Routes = [
     component: CriarUsuarioComponent,
     canActivate: [canActivateAuthRole],
     data: { role: 'admin_winfor' }
+  },
+  {
+    path: 'usuarios/editar/:userId',
+    component: EditarUsuarioComponent,
+    canActivate: [canActivateAuthRole],
+    data: { role: 'admin_winfor'}
   },
 //  Exemplos:
 //  -------
