@@ -17,6 +17,11 @@ export class UsuarioService {
     return this.httpClient.get<Usuario[]>(this.apiUrl);
   }
 
+  getUsuario(id: string): Observable<Usuario> {
+    return this.httpClient.get<Usuario>(`${this.apiUrl}/${id}`)
+      .pipe(catchError(this.handleRetrievalError));
+  }
+
   addUsuario(username: string): Observable<Usuario> {
     return this.httpClient.post<Usuario>(`${this.apiUrl}/`, username)
       .pipe(catchError(this.handleCreationError));
