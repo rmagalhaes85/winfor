@@ -36,21 +36,21 @@ public class UsuarioResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Usuario[] listar() {
         List<Usuario> usuarios = keycloak
-                .realm("winfor")
-                .users()
-                .list()
-                .stream()
-                .map(uk -> new Usuario() {{
-                    username = uk.getUsername();
-                    id = uk.getId();
-                    nome = uk.getFirstName();
-                    sobrenome = uk.getLastName();
-                    email = uk.getEmail();
-                    // TODO
-                    role = getFirstRoleName(uk);
-                    senha = ""; // senha deverá poder ser escrita, mas nunca lida
-                }})
-                .collect(Collectors.toList());
+            .realm("winfor")
+            .users()
+            .list()
+            .stream()
+            .map(uk -> new Usuario() {{
+                username = uk.getUsername();
+                id = uk.getId();
+                nome = uk.getFirstName();
+                sobrenome = uk.getLastName();
+                email = uk.getEmail();
+                // TODO
+                role = getFirstRoleName(uk);
+                senha = ""; // senha deverá poder ser escrita, mas nunca lida
+            }})
+            .collect(Collectors.toList());
         return usuarios.toArray(new Usuario[0]);
     }
 
