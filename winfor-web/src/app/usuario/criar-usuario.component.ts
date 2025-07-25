@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   FormControl,
   FormGroup,
@@ -7,6 +8,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Usuario, UsuarioService } from '.';
+
+import { ModalService } from '../shared/modal/modal.service';
 
 @Component({
   selector: 'app-criar-usuario',
@@ -21,14 +24,24 @@ export class CriarUsuarioComponent {
     ])
   });
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(
+    private usuarioService: UsuarioService,
+    private modalService: ModalService,
+    private router: Router,
+  ) { }
 
   get username() { return this.criarUsuarioForm.get('username'); }
 
   onSubmit() {
     if (this.criarUsuarioForm.valid && typeof(this.username?.value) === 'string') {
       this.usuarioService.addUsuario(this.username?.value)
-        .subscribe(usuario => console.log(`Usuario gravado: ${usuario}`));
+        .subscribe({
+          next: usuario => {
+            this.router.navigate(['/usuarios/editar', usuario.id]);
+            console.log(`Usuario criado: ${usuario}`);
+          },
+          error: err => { this.modalService.showModal(err.message); }
+        });
     } else {
       this.criarUsuarioForm.markAllAsTouched();
     }
