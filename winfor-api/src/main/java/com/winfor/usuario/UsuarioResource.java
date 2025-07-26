@@ -11,6 +11,7 @@ import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
@@ -88,6 +89,13 @@ public class UsuarioResource {
       Log.error(String.format("A API do Keycloak retornou um status desconhecido: %d",
           status));
       return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+    }
+
+    @PUT
+    @Path("/{id}")
+    @RolesAllowed("admin_winfor")
+    public String edit(String id) {
+        return "{\"result\": \"OK\"}";
     }
 
     private String getFirstRoleName(UserRepresentation ur) {
