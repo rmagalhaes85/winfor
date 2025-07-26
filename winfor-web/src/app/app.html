@@ -67,19 +67,19 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item" *ngIf="hasRealmRole('admin_winfor')">
-        <a routerLink="usuarios" class="nav-link active">
+        <a routerLink="usuarios" routerLinkActive="active" class="nav-link text-white">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
           Usuários
         </a>
       </li>
       <li *ngIf="hasRealmRole('admin_winfor') || hasRealmRole('coordenador_cursos')">
-        <a href="#" class="nav-link text-white">
+        <a routerLink="cursos" routerLinkActive="active" class="nav-link text-white">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
           Cursos
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">
+        <a routerLink="matrizes-curriculares" routerLinkActive="active" class="nav-link text-white">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
           Matriz Curricular
         </a>

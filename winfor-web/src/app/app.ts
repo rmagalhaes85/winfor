@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal, effect, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
 import { typeEventArgs, ReadyArgs, KeycloakEventType, KEYCLOAK_EVENT_SIGNAL } from 'keycloak-angular';
 import Keycloak from 'keycloak-js';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouterLink, RouterOutlet],
+  imports: [CommonModule, RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
