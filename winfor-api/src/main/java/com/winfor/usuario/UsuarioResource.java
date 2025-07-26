@@ -76,9 +76,9 @@ public class UsuarioResource {
         u.username = username;
         u.id = userId;
         return Response.status(status)
-            .entity(u)
-            .type(MediaType.APPLICATION_JSON)
-            .build();
+          .entity(u)
+          .type(MediaType.APPLICATION_JSON)
+          .build();
       }
 
       if (status == Response.Status.CONFLICT) {
@@ -87,7 +87,7 @@ public class UsuarioResource {
       }
 
       Log.error(String.format("A API do Keycloak retornou um status desconhecido: %d",
-          status));
+            status));
       return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
     }
 
