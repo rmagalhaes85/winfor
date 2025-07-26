@@ -91,6 +91,35 @@ public class UsuarioResource {
       return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
     }
 
+    @GET
+    @Path("/{id}")
+    @RolesAllowed("admin_winfor")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response ler(String id) {
+        UserRepresentation userRepresentation = keycloak
+            .realm("winfor")
+            .users()
+            .get(id)
+            .toRepresentation();
+
+        if (userRepresentation == null) {
+            return Response.status(Response.Status.NOT_FOUND)
+                .build();
+        }
+
+        Usuario usuario = new Usuario();
+        usuario.id = userRepresentation.getId();
+        usuario.username = userRepresentation.getUsername();
+        usuario.nome = userRepresentation.getFirstName();
+        usuario.sobrenome = userRepresentation.getLastName();
+        usuario.email = userRepresentation.getEmail();
+
+        return Response.status(Response.Status.OK)
+            .entity(usuario)
+            .type(MediaType.APPLICATION_JSON)
+            .build();
+    }
+
     @PUT
     @Path("/{id}")
     @RolesAllowed("admin_winfor")
