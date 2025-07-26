@@ -73,6 +73,27 @@
     </div>
   </div>
 
+  <div class="col-md-6 mb-3">
+    <label for="role" class="form-label">Perfil:</label>
+    <select id="role" class="form-control" formControlName="role">
+      <option
+        *ngFor="let option of ['admin_winfor', 'coordenador_cursos', 'professor', 'aluno']"
+        [ngValue]="option">
+        {{ option }}
+      </option>
+    </select>
+  </div>
+
+  <div class="col-md-6 mb-3">
+    <label for="senha" class="form-label">Senha (preencher apenas em caso de alteração):</label>
+    <input
+      id="senha"
+      class="form-control"
+      type="password"
+      formControlName="senha"
+      />
+  </div>
+
   <button type="submit" class="btn btn-primary">Salvar</button>
 </form>
 

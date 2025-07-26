@@ -18,6 +18,7 @@ import jakarta.ws.rs.core.Response;
 
 @Path("/api/usuarios")
 public class UsuarioResource {
+
     @Inject
     SecurityIdentity securityIdentity;
 
@@ -53,7 +54,12 @@ public class UsuarioResource {
     @PUT
     @Path("/{id}")
     @RolesAllowed("admin_winfor")
-    public String edit(String id) {
-        return "{\"result\": \"OK\"}";
+    public Response edit(Usuario usuario) {
+        usuarioKeycloakService.editar(usuario);
+        return Response.status(Response.Status.OK)
+            .entity(usuario)
+            .type(MediaType.APPLICATION_JSON)
+            .build();
     }
+
 }

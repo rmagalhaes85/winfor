@@ -57,7 +57,7 @@ export class EditarUsuarioComponent implements OnInit {
 
   onSubmit() {
     if (this.editarUsuarioForm.valid) {
-      this.usuarioService.updateUsuario(this.editarUsuarioForm.value)
+      this.usuarioService.updateUsuario({id: this.userId, ...this.editarUsuarioForm.value})
         .subscribe({
           next: usuario => {
             this.router.navigate(['/usuarios']);
