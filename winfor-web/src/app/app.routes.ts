@@ -16,19 +16,19 @@ export const routes: Routes = [
     path: 'usuarios',
     component: ListaUsuariosComponent,
     canActivate: [canActivateAuthRole],
-    data: { role: 'admin_winfor' }
+    data: { allowedRoles: 'admin_winfor' }
   },
   {
     path: 'usuarios/criar',
     component: CriarUsuarioComponent,
     canActivate: [canActivateAuthRole],
-    data: { role: 'admin_winfor' }
+    data: { allowedRoles: 'admin_winfor' }
   },
   {
     path: 'usuarios/editar/:userId',
     component: EditarUsuarioComponent,
     canActivate: [canActivateAuthRole],
-    data: { role: 'admin_winfor'}
+    data: { allowedRoles: 'admin_winfor'}
   },
   {
     path: 'cursos',
