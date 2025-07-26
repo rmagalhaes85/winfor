@@ -5,6 +5,9 @@ import {
   ListaUsuariosComponent,
   CriarUsuarioComponent,
 } from './usuario';
+import {
+  ListaCursosComponent,
+} from './cursos';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -26,6 +29,12 @@ export const routes: Routes = [
     component: EditarUsuarioComponent,
     canActivate: [canActivateAuthRole],
     data: { role: 'admin_winfor'}
+  },
+  {
+    path: 'cursos',
+    component: ListaCursosComponent,
+    canActivate: [canActivateAuthRole],
+    data: { allowedRoles: ['admin_winfor', 'coordenador_cursos'] },
   },
 //  Exemplos:
 //  -------
