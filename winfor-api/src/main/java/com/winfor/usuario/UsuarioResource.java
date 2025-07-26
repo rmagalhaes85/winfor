@@ -60,35 +60,35 @@ public class UsuarioResource {
     @RolesAllowed("admin_winfor")
     @Produces(MediaType.APPLICATION_JSON)
     public Response criar(String username) {
-      UserRepresentation user = new UserRepresentation();
-      user.setUsername(username);
-      RealmResource realmResource = keycloak.realm("winfor");
-      UsersResource usersResource = realmResource.users();
+        UserRepresentation user = new UserRepresentation();
+        user.setUsername(username);
+        RealmResource realmResource = keycloak.realm("winfor");
+        UsersResource usersResource = realmResource.users();
 
-      Response response = usersResource.create(user);
-      Response.Status status = Response.Status.fromStatusCode(response.getStatus());
+        Response response = usersResource.create(user);
+        Response.Status status = Response.Status.fromStatusCode(response.getStatus());
 
-      if (status == Response.Status.CREATED) {
-        String userId = CreatedResponseUtil.getCreatedId(response);
-        Log.info(String.format("Usuario '%s' criado com sucesso. Id = '%s'",
-              username, userId));
-        Usuario u = new Usuario();
-        u.username = username;
-        u.id = userId;
-        return Response.status(status)
-          .entity(u)
-          .type(MediaType.APPLICATION_JSON)
-          .build();
-      }
+        if (status == Response.Status.CREATED) {
+            String userId = CreatedResponseUtil.getCreatedId(response);
+            Log.info(String.format("Usuario '%s' criado com sucesso. Id = '%s'",
+                        username, userId));
+            Usuario u = new Usuario();
+            u.username = username;
+            u.id = userId;
+            return Response.status(status)
+                .entity(u)
+                .type(MediaType.APPLICATION_JSON)
+                .build();
+        }
 
-      if (status == Response.Status.CONFLICT) {
-        Log.info(String.format("Já existe um usuário de login '%s'", username));
-        return Response.status(status).build();
-      }
+        if (status == Response.Status.CONFLICT) {
+            Log.info(String.format("Já existe um usuário de login '%s'", username));
+            return Response.status(status).build();
+        }
 
-      Log.error(String.format("A API do Keycloak retornou um status desconhecido: %d",
-            status));
-      return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        Log.error(String.format("A API do Keycloak retornou um status desconhecido: %d",
+                    status));
+        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
     }
 
     @GET
