@@ -56,7 +56,7 @@ public class UsuarioResource {
     }
 
     @POST
-    @Path("/criar")
+    @Path("/")
     @RolesAllowed("admin_winfor")
     @Produces(MediaType.APPLICATION_JSON)
     public Response criar(String username) {
