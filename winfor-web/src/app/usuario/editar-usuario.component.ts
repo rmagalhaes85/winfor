@@ -46,7 +46,7 @@ export class EditarUsuarioComponent implements OnInit {
       },
       error: err => {
         console.error({err});
-        this.modalService.showModal(err.message);
+        this.modalService.showOkOnlyModal(err.message);
       }
     });
   }
@@ -63,7 +63,7 @@ export class EditarUsuarioComponent implements OnInit {
             this.router.navigate(['/usuarios']);
             console.log(`Alterações gravadas com sucesso: ${usuario}`);
           },
-          error: err => { this.modalService.showModal(err.message); }
+          error: err => { this.modalService.showOkOnlyModal(err.message); }
         });
     } else {
       this.editarUsuarioForm.markAllAsTouched();

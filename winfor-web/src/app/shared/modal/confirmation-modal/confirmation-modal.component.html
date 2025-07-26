@@ -1,0 +1,11 @@
+<div class="modal-header">
+  <h4 class="modal-title">Confirmação</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <p>{{ text }}</p>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-{{confirmationButtonStyle}}" (click)="activeModal.close('OK')">OK</button>
+  <button class="btn btn-secondary" (click)="activeModal.close('CANCEL')">Cancelar</button>
+</div>

@@ -8,6 +8,7 @@ import io.quarkus.security.identity.SecurityIdentity;
 
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
@@ -54,7 +55,7 @@ public class UsuarioResource {
     @PUT
     @Path("/{id}")
     @RolesAllowed("admin_winfor")
-    public Response edit(Usuario usuario) {
+    public Response editar(Usuario usuario) {
         usuarioKeycloakService.editar(usuario);
         return Response.status(Response.Status.OK)
             .entity(usuario)
@@ -62,4 +63,13 @@ public class UsuarioResource {
             .build();
     }
 
+    @DELETE
+    @Path("/{id}")
+    @RolesAllowed("admin_winfor")
+    public Response remover(String id) {
+        usuarioKeycloakService.remover(id);
+        return Response.status(Response.Status.OK)
+            .type(MediaType.APPLICATION_JSON)
+            .build();
+    }
 }

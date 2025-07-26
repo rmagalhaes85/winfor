@@ -40,7 +40,7 @@ export class CriarUsuarioComponent {
             this.router.navigate(['/usuarios/editar', usuario.id]);
             console.log(`Usuario criado: ${usuario}`);
           },
-          error: err => { this.modalService.showModal(err.message); }
+          error: err => { this.modalService.showOkOnlyModal(err.message); }
         });
     } else {
       this.criarUsuarioForm.markAllAsTouched();

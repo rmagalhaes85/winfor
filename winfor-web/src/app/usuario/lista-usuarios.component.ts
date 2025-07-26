@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Usuario } from './usuario';
 import { UsuarioService } from './usuario.service';
+import { ModalService } from '../shared/modal/modal.service';
 
 @Component({
   selector: 'app-lista-usuarios',
@@ -13,7 +14,10 @@ import { UsuarioService } from './usuario.service';
 export class ListaUsuariosComponent implements OnInit {
   usuarios: Usuario[] = [];
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(
+    private usuarioService: UsuarioService,
+    private modalService: ModalService,
+  ) { }
 
   ngOnInit(): void {
     this.getUsuarios();
@@ -23,8 +27,11 @@ export class ListaUsuariosComponent implements OnInit {
     this.usuarioService.getUsuarios().subscribe(usuarios => this.usuarios = usuarios);
   }
 
-  deleteUsuario(id: string): void {
+  async deleteUsuario(id: string): Promise<void> {
     // TODO modal de confirmação
-    this.usuarioService.deleteUsuario(id).subscribe(() => this.getUsuarios());
+    const result = await this.modalService.showConfirmationModal(
+      "Cofirma a exclusão do usuário?", "danger");
+    if (result === "OK")
+      this.usuarioService.deleteUsuario(id).subscribe(() => this.getUsuarios());
   }
 }
