@@ -20,6 +20,8 @@ public class MatrizDisciplinaResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Map<Integer, List<MatrizDisciplina>> getByIdMatriz(Long idMatriz) {
         return MatrizDisciplina.findByIdMatriz(idMatriz)
+            // a sequência abaixo agrupa e ordena as disciplinas por semestre, entregando
+            // para o front-end uma estrutura de dados mais conveniente para exibição
             .stream()
             .collect(groupingBy(md -> md.semestre))
             .entrySet()
