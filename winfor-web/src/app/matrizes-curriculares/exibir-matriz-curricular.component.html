@@ -1,0 +1,15 @@
+<p>exibir-matriz-curricular works!</p>
+<div>
+  <select
+    [(ngModel)]="cursoSelecionado"
+    (change)="onCursoSelecionadoChange()">
+    <option [ngValue]="null">-- Selecione um Curso --</option>
+    <option *ngFor="let curso of cursos" [ngValue]="curso">
+      {{ curso.codCurso }} - {{ curso.nome }}
+    </option>
+  </select>
+</div>
+<pre>
+{{ cursoSelecionado | json }}
+{{ matrizDisciplinas | json }}
+</pre>
