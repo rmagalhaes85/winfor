@@ -14,4 +14,11 @@ public class MatrizResource {
     public MatrizCurricular getByCodCurso(String codCurso) {
         return MatrizCurricular.findByCodCurso(codCurso);
     }
+
+    @GET
+    @Path("/cursoid/{cursoId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public MatrizCurricular findByCursoId(Long cursoId) {
+        return MatrizCurricular.findByCursoId(cursoId);
+    }
 }
