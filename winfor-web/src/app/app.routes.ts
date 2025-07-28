@@ -1,13 +1,20 @@
 import { canActivateAuthRole } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
+
 import {
   EditarUsuarioComponent,
   ListaUsuariosComponent,
   CriarUsuarioComponent,
 } from './usuario';
+
 import {
   ListaCursosComponent,
 } from './cursos';
+
+import {
+  ExibirMatrizCurricularComponent,
+} from './matrizes-curriculares'
+
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -35,6 +42,14 @@ export const routes: Routes = [
     component: ListaCursosComponent,
     canActivate: [canActivateAuthRole],
     data: { allowedRoles: ['admin_winfor', 'coordenador_cursos'] },
+  },
+  {
+    path: 'matrizes-curriculares',
+    component: ExibirMatrizCurricularComponent,
+    canActivate: [canActivateAuthRole],
+    data: { allowedRoles: [
+      'admin_winfor', 'coordenador_cursos', 'aluno', 'professor'
+    ] },
   },
 //  Exemplos:
 //  -------
