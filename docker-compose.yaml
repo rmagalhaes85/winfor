@@ -45,6 +45,10 @@ services:
   winfor-api:
     image: maven:3.9-eclipse-temurin-21
     command: mvn quarkus:dev -DdebugHost=0.0.0.0 # -Dsuspend
+    #user: 1000:1000
+    #build:
+    #  context: ./winfor-api
+    #  target: development
     container_name: winfor-api
     environment:
       QUARKUS_KEYCLOAK_SERVER_URL: "http://keycloak:8080/"

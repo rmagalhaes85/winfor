@@ -1,7 +1,7 @@
 all: run
 
 run:
-	docker compose up --abort-on-container-exit --build
+	UID=$(id -u) GID=$(id -g) docker compose up --abort-on-container-exit --build
 
 down:
-	docker compose down --volumes
+	UID=$(id -u) GID=$(id -g) docker compose down --volumes

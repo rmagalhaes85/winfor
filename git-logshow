@@ -1,0 +1,6 @@
+#!/bin/bash
+
+git log --oneline |
+  percol |
+  cut -d' ' -f1 |
+  xargs -r git show
